@@ -1,5 +1,7 @@
 import './styles/Home.scss';
 import Helmet from 'react-helmet';
+import { Link } from 'react-router-dom';
+import { FormButton } from '../components/FormComponents';
 
 function Home() {
     return (
@@ -11,8 +13,12 @@ function Home() {
             <div className="Home">
                 <h1>Recipe book</h1>
                 <p>Keep track of your favourite recipes across the web</p>
-                <button type="button" class="btn btn-dark">Sign up</button>
-                <button type="button" class="btn btn-dark">Sign in</button>
+                <Link to='/signup'>
+                    <FormButton type="button" class="btn btn-dark">Sign up</FormButton>
+                </Link>
+                <Link to='signin'>
+                    <FormButton type="button" class="btn btn-dark">Sign in</FormButton>
+                </Link>
             </div>
         </>
     );

@@ -1,0 +1,34 @@
+@import '~bootstrap/scss/bootstrap.scss';
+
+$bg-colour: #282c34;
+
+.Container {
+  text-align: center;
+  background-color: $bg-colour;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Form { 
+    border: 2px grey solid; 
+    margin: 10px; 
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+label { 
+    font-size: 15px;
+    justify-content: left;
+}
+
+.bottom-text { 
+    font-size: 12px;
+}
