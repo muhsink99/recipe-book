@@ -1,9 +1,10 @@
 @import '~bootstrap/scss/bootstrap.scss';
 
+$bg-colour: #282c34;
 
-.App {
+.Home {
   text-align: center;
-  background-color: #282c34;
+  background-color: $bg-colour;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

@@ -1,13 +1,20 @@
-import './App.scss';
+
+import Home from './pages/Home';
+import Signin from './pages/Signin';
+import Signup from './pages/Signup';
+
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
 
 function App() {
   return (
-    <div className="App">
-      <h1>Recipe book</h1>
-      <p>Keep track of your favourite recipes across the web</p>
-      <button>Sign up </button>
-      <button>Sign in </button>
-    </div>
+    <main>
+      <Switch>
+        <Route path="/" component={Home} exact />
+        <Route path="/signup" component={Signup} exact />
+        <Route path="/signin" component={Signin} exact />
+      </Switch>
+    </main>
   );
 }
 
