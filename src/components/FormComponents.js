@@ -2,14 +2,16 @@ import styled from 'styled-components'
 
 const FormButton = styled.button`
   display: inline-block;
-  border-radius: 1px;
   padding: 0.1rem 0;
   margin: 0.5em 1rem;
-  width: 15rem;
-  background: transparent;
+  width: 20rem;
+  height: 3rem;
+  background: #467599;
   color: white;
-  border: 2px solid white;
-  font-size: 75%;
+  font-size: 0.65em;
+  border-style: none;
+box-shadow: 1px 2px #253F52;
+
 `
 
 const FormInput = styled.input`
@@ -17,10 +19,9 @@ const FormInput = styled.input`
   border-radius: 1px;
   padding: 0.1rem 0;
   margin: 0.5em 1rem;
-  width: 15rem;
+  width: 20rem;
   background: white;
-  border: 1px solid grey;
-  font-size: 50%;
+  font-size: 0.65em;
   color: black;
 `
 

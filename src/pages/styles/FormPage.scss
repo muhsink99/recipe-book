@@ -1,6 +1,7 @@
 @import '~bootstrap/scss/bootstrap.scss';
 
-$bg-colour: #282c34;
+$bg-colour: #1d3354;
+$text-colour: #E9FFF9;
 
 .Container {
   text-align: center;
@@ -11,22 +12,25 @@ $bg-colour: #282c34;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: $text-colour;
 }
 
 .Form { 
-    border: 2px grey solid; 
     margin: 10px; 
     flex-direction: column;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px;
-}
 
-label { 
-    font-size: 15px;
-    justify-content: left;
+    label { 
+        font-size: 15px;
+        justify-content: left;
+        align-self: left;
+        align-items: left;
+        align-content: left;
+        left: 50%;
+    }   
 }
 
 .bottom-text { 

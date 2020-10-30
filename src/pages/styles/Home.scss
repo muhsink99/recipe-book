@@ -1,6 +1,7 @@
 @import '~bootstrap/scss/bootstrap.scss';
 
-$bg-colour: #282c34;
+$bg-colour: #1d3354;
+$text-colour: #E9FFF9;
 
 .Home {
   text-align: center;
@@ -11,5 +12,5 @@ $bg-colour: #282c34;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: $text-colour;
 }
