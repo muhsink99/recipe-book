@@ -1,20 +1,24 @@
 
+import React from "react";
 import Home from './pages/Home';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 
-import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { AuthProvider } from './Auth';
 
-
-function App() {
+const App = () => {
   return (
-    <main>
-      <Switch>
-        <Route path="/" component={Home} exact />
-        <Route path="/signup" component={Signup} exact />
-        <Route path="/signin" component={Signin} exact />
-      </Switch>
-    </main>
+    <AuthProvider>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/signin" component={Signin} />
+        </Switch>
+      </Router>
+    </AuthProvider>
+
   );
 }
 

@@ -1,7 +1,6 @@
 import './styles/FormPage.scss';
 import Helmet from 'react-helmet';
 import { FormInput, FormButton } from '../components/FormComponents';
-import { Link } from 'react-router-dom';
 
 function Signup() {
     return (
@@ -16,8 +15,6 @@ function Signup() {
                     <label>Username</label>
                     <FormInput></FormInput>
                     <label>Password</label>
-                    <FormInput type="password"></FormInput>
-                    <label>Confirm Password</label>
                     <FormInput type="password"></FormInput>
                     <FormButton>Sign up</FormButton>
                 </div>
