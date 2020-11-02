@@ -1,8 +1,24 @@
 import '../styles/FormPage.scss';
 import Helmet from 'react-helmet';
 import { FormInput, FormButton } from '../../components/FormComponents';
+import { useState, useCallback } from 'react';
+import { auth } from '../../firebase';
 
-function Signup() {
+const Signup = ({ history }) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSignUp = useCallback(async event => {
+        event.preventDefault();
+        try {
+            console.log(email);
+            await auth.createUserWithEmailAndPassword(email, password);
+            history.push("/")
+        } catch (error) {
+            alert(error);
+        }
+    });
+
     return (
         <>
             <Helmet>
@@ -12,11 +28,13 @@ function Signup() {
             <div className="Container">
                 <h1>Sign up</h1>
                 <div className="Form">
-                    <label>Username</label>
-                    <FormInput></FormInput>
-                    <label>Password</label>
-                    <FormInput type="password"></FormInput>
-                    <FormButton>Sign up</FormButton>
+                    <form onSubmit={handleSignUp}>
+                        <label>Username</label>
+                        <FormInput value={email} type="email" onChange={e => setEmail(e.target.value)}></FormInput>
+                        <label>Password</label>
+                        <FormInput value={password} type="password" onChange={e => setPassword(e.target.value)}></FormInput>
+                        <FormButton>Sign up</FormButton>
+                    </form>
                 </div>
             </div>
         </>
