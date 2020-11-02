@@ -1,6 +1,6 @@
-import './styles/FormPage.scss';
+import '../styles/FormPage.scss';
 import Helmet from 'react-helmet';
-import { FormInput, FormButton } from '../components/FormComponents';
+import { FormInput, FormButton } from '../../components/FormComponents';
 
 function Signup() {
     return (
