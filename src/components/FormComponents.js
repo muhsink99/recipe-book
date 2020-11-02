@@ -10,8 +10,7 @@ const FormButton = styled.button`
   color: white;
   font-size: 0.65em;
   border-style: none;
-box-shadow: 1px 2px #253F52;
-
+  box-shadow: 1px 2px #253F52;
 `
 
 const FormInput = styled.input`

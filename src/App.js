@@ -3,9 +3,10 @@ import React from "react";
 import Home from './pages/Home';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
+import { AuthProvider } from './Auth';
+
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { AuthProvider } from './Auth';
 
 const App = () => {
   return (
@@ -18,7 +19,6 @@ const App = () => {
         </Switch>
       </Router>
     </AuthProvider>
-
   );
 }
 
