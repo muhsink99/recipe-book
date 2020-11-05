@@ -10,9 +10,9 @@ const Signup = ({ history }) => {
     const { register, handleSubmit, errors } = useForm(); // initialize the hook
     const [authError, setAuthError] = useState(null);
 
-    const handleSignUp = (data) => {
-        auth.createUserWithEmailAndPassword(data.email, data.password).then(result => {
-            history.push("/");
+    const handleSignUp = async (data) => {
+        await auth.createUserWithEmailAndPassword(data.email, data.password).then(function () {
+            history.push("/recipes");
         }).catch(error => {
             setAuthError(error.message);
             console.log(error.message);

@@ -13,9 +13,10 @@ const Signin = ({ history }) => {
     const { register, handleSubmit, errors } = useForm(); // initialize the hook
     const [authError, setAuthError] = useState(null);
 
-    const handleSignIn = (data) => {
-        auth.signInWithEmailAndPassword(data.email, data.password).then(result => {
-            history.push("/");
+    const handleSignIn = async (data) => {
+        await auth.signInWithEmailAndPassword(data.email, data.password).then(function () {
+            history.push("/recipes");
+            console.log(result.user.uid);
         }).catch(error => {
             setAuthError(error.message);
             console.log(error.message);
@@ -26,6 +27,8 @@ const Signin = ({ history }) => {
 
     if (currentUser) {
         console.log(currentUser);
+
+        <Redirect to="/recipes" />
     }
 
     return (

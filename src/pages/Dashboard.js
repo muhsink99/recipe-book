@@ -1,9 +1,10 @@
 import './styles/Home.scss';
 import Helmet from 'react-helmet';
-import { Link } from 'react-router-dom';
 import { FormButton } from '../components/FormComponents';
+import { auth } from '../firebase';
+import { Redirect, withRouter } from 'react-router-dom';
 
-function Home() {
+const Home = ({ history }) => {
     return (
         <>
             <Helmet>
@@ -12,9 +13,13 @@ function Home() {
             </Helmet>
             <div className="Home">
                 <h1>Hi.</h1>
+                <FormButton onClick={() => {
+                    auth.signOut();
+                    history.push('/');
+                }}>Sign out</FormButton>
             </div>
         </>
     );
 }
 
-export default Home;
+export default withRouter(Home);
