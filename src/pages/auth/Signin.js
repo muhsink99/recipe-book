@@ -1,7 +1,7 @@
 import '../styles/FormPage.scss';
 import Helmet from 'react-helmet';
 import { FormInput, FormButton } from '../../components/FormComponents';
-import { useState, useCallback, useContext } from 'react';
+import { useContext, useState } from 'react';
 import { auth } from '../../firebase';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Auth';
@@ -11,15 +11,15 @@ import { useForm } from 'react-hook-form';
 
 const Signin = ({ history }) => {
     const { register, handleSubmit, errors } = useForm(); // initialize the hook
+    const [authError, setAuthError] = useState(null);
 
     const handleSignIn = (data) => {
-        console.log(data);
-        try {
-            auth.signInWithEmailAndPassword(data.email, data.password);
+        auth.signInWithEmailAndPassword(data.email, data.password).then(result => {
             history.push("/");
-        } catch (error) {
-            alert(error); // TODO: Show error on the front-end instead.
-        }
+        }).catch(error => {
+            setAuthError(error.message);
+            console.log(error.message);
+        });
     }
 
     const { currentUser } = useContext(AuthContext);
@@ -38,6 +38,10 @@ const Signin = ({ history }) => {
                 <div className="Container">
                     <h1>Sign in</h1>
                     <div className="Form">
+                        {authError &&
+                            <div className='alert alert-danger'>
+                                {authError}
+                            </div>}
                         <label>Username</label>
                         <FormInput ref={register({ required: true })} name="email" type="email" />
                         {errors.email &&
