@@ -17,7 +17,7 @@ const Signup = ({ history }) => {
         } catch (error) {
             alert(error);
         }
-    });
+    }, [history]);
 
     return (
         <>
@@ -25,18 +25,19 @@ const Signup = ({ history }) => {
                 <title>Sign up</title>
                 <meta name="description" content="Landing page where users can sign up/in." />
             </Helmet>
-            <div className="Container">
-                <h1>Sign up</h1>
-                <div className="Form">
-                    <form onSubmit={handleSignUp}>
+            <form onSubmit={handleSignUp}>
+                <div className="Container">
+                    <h1>Sign up</h1>
+                    <div className="Form">
                         <label>Username</label>
                         <FormInput value={email} type="email" onChange={e => setEmail(e.target.value)}></FormInput>
                         <label>Password</label>
                         <FormInput value={password} type="password" onChange={e => setPassword(e.target.value)}></FormInput>
-                        <FormButton>Sign up</FormButton>
-                    </form>
+                        <FormButton type="submit">Sign up</FormButton>
+                    </div>
                 </div>
-            </div>
+            </form>
+
         </>
     );
 }
