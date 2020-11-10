@@ -1,44 +1,44 @@
 import '../styles/FormPage.scss';
 import Helmet from 'react-helmet';
 import { FormInput, FormButton } from '../../components/FormComponents';
-import { auth, db } from '../../firebase';
+import { auth } from '../../firebase';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Signup = ({ history }) => {
+const ResetPassword = ({ history }) => {
     const { register, handleSubmit, errors } = useForm(); // initialize the hook
     const [authError, setAuthError] = useState(null);
+    const [authSuccess, setAuthSuccess] = useState(null);
 
-    const handleSignUp = async (data) => {
-        await auth.createUserWithEmailAndPassword(data.email, data.password).then(function (cred) {
-            db.collection('users').doc(cred.user.uid).set({
-                email: data.email,
-                recipes: [{}],
-            }).then(function () {
-                history.push("/recipes");
-            }).catch(function (error) {
-                console.log(error);
-            });
-        }).catch(error => {
+    const handleResetPassword = async (data) => {
+        try {
+            await auth.sendPasswordResetEmail(data.email);
+            setAuthSuccess('E-mail successfully sent. ');
+            setAuthError(null);
+        } catch (error) {
             setAuthError(error.message);
-            console.log(error.message);
-        });
+        }
     }
 
     return (
         <>
             <Helmet>
-                <title>Sign up</title>
-                <meta name="description" content="Form where users can create an account." />
+                <title>Reset password</title>
+                <meta name="description" content="Form where users can send a reset password e-mail to themselves." />
             </Helmet>
-            <form onSubmit={handleSubmit(handleSignUp)}>
+            <form onSubmit={handleSubmit(handleResetPassword)}>
                 <div className="Container">
                     {authError &&
                         <div className='alert alert-danger'>
                             {authError}
                         </div>}
-                    <h1>Sign up</h1>
+                    {authSuccess &&
+                        <div className='alert alert-primary'>
+                            {authSuccess}
+                        </div>}
+                    <h1>Reset password</h1>
+                    <p>Send an e-mail to reset your password.</p>
                     <div className="Form">
                         <label>Username</label>
                         <FormInput ref={register({ required: true })} name="email" type="email" />
@@ -46,14 +46,8 @@ const Signup = ({ history }) => {
                             <div className='alert alert-danger'>
                                 E-mail is a required field
                              </div>}
-                        <label>Password</label>
-                        <FormInput ref={register({ required: true })} name="password" type="password" />
-                        {errors.password &&
-                            <div className='alert alert-danger'>
-                                Password is a required field
-                             </div>}
-                        <FormButton type="submit">Sign up</FormButton>
-                        <span className="bottom-text">Already have an account? <Link to="/signin">Click here!</Link></span>
+                        <FormButton type="submit">Reset password</FormButton>
+                        <span className="bottom-text">Go back to the home page <Link to="/">here</Link></span>
                     </div>
                 </div>
             </form>
@@ -62,4 +56,4 @@ const Signup = ({ history }) => {
     );
 }
 
-export default Signup;
+export default ResetPassword;

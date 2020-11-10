@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Signin from './pages/auth/Signin';
 import Signup from './pages/auth/Signup';
 import Dashboard from './pages/Dashboard';
+import ResetPassword from './pages/auth/ResetPassword';
 import PrivateRoute from './PrivateRoute';
 import { AuthProvider } from './Auth';
 
@@ -18,6 +19,7 @@ const App = () => {
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/signin" component={Signin} />
+          <Route exact path="/reset" component={ResetPassword} />
         </Switch>
       </Router>
     </AuthProvider>

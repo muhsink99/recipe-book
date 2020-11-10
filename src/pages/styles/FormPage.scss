@@ -15,8 +15,12 @@ $text-colour: #E9FFF9;
   color: $text-colour;
 }
 
+p { 
+    font-size: 15px;
+}
+
 .Form { 
-    margin: 10px; 
+    margin: 5px; 
     flex-direction: column;
     display: flex;
     justify-content: center;

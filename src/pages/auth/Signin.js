@@ -60,6 +60,7 @@ const Signin = ({ history }) => {
                         <label>Password</label>
                         <FormButton type="submit">Sign in</FormButton>
                         <span className="bottom-text">Don't have an account? <Link to="/signup">Click here!</Link></span>
+                        <span className="bottom-text">Forgot your password? <Link to="/reset">Click here!</Link></span>
                     </div>
                 </div>
             </form>
