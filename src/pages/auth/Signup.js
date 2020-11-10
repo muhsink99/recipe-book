@@ -1,9 +1,11 @@
 import '../styles/FormPage.scss';
 import Helmet from 'react-helmet';
 import { FormInput, FormButton } from '../../components/FormComponents';
-import { auth } from '../../firebase';
+import { auth, db } from '../../firebase';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 
 
 const Signup = ({ history }) => {
@@ -11,8 +13,15 @@ const Signup = ({ history }) => {
     const [authError, setAuthError] = useState(null);
 
     const handleSignUp = async (data) => {
-        await auth.createUserWithEmailAndPassword(data.email, data.password).then(function () {
-            history.push("/recipes");
+        await auth.createUserWithEmailAndPassword(data.email, data.password).then(function (cred) {
+            db.collection('users').doc(cred.user.uid).set({
+                email: data.email,
+                recipes: [{}],
+            }).then(function () {
+                history.push("/recipes");
+            }).catch(function (error) {
+                console.log(error);
+            });
         }).catch(error => {
             setAuthError(error.message);
             console.log(error.message);
@@ -46,6 +55,7 @@ const Signup = ({ history }) => {
                                 Password is a required field
                              </div>}
                         <FormButton type="submit">Sign up</FormButton>
+                        <span className="bottom-text">Already have an account? <Link to="/signin">Click here!</Link></span>
                     </div>
                 </div>
             </form>

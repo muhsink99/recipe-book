@@ -1,0 +1,12 @@
+@import '~bootstrap/scss/bootstrap.scss';
+
+$bg-colour: #1d3354;
+$text-colour: #E9FFF9;
+
+.Dashboard {
+  background-color: $bg-colour;
+  font-size: calc(10px + 2vmin);
+  color: $text-colour;
+  padding: 20px;
+  min-height: 100vh;
+}

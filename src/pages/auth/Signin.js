@@ -16,7 +16,6 @@ const Signin = ({ history }) => {
     const handleSignIn = async (data) => {
         await auth.signInWithEmailAndPassword(data.email, data.password).then(function () {
             history.push("/recipes");
-            console.log(result.user.uid);
         }).catch(error => {
             setAuthError(error.message);
             console.log(error.message);
