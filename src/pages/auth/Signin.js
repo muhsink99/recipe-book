@@ -1,7 +1,7 @@
 import '../styles/FormPage.scss';
 import Helmet from 'react-helmet';
 import { FormInput, FormButton } from '../../components/FormComponents';
-import { useContext, useState } from 'react';
+import { useContext, useState, useCallback } from 'react';
 import { auth } from '../../firebase';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Auth';
@@ -13,14 +13,15 @@ const Signin = ({ history }) => {
     const { register, handleSubmit, errors } = useForm(); // initialize the hook
     const [authError, setAuthError] = useState(null);
 
-    const handleSignIn = async (data) => {
-        await auth.signInWithEmailAndPassword(data.email, data.password).then(function () {
+    const handleSignIn = useCallback(async (data) => {
+        try {
+            await auth.signInWithEmailAndPassword(data.email, data.password);
             history.push("/recipes");
-        }).catch(error => {
+        } catch (error) {
             setAuthError(error.message);
             console.log(error.message);
-        });
-    }
+        }
+    }, [history]);
 
     const { currentUser } = useContext(AuthContext);
 

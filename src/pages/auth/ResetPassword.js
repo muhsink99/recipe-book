@@ -4,7 +4,7 @@ import { FormInput, FormButton } from '../../components/FormComponents';
 import { auth, db } from '../../firebase';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Signup = ({ history }) => {
     const { register, handleSubmit, errors } = useForm(); // initialize the hook
@@ -62,4 +62,4 @@ const Signup = ({ history }) => {
     );
 }
 
-export default withRouter(Signup);
+export default Signup;

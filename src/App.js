@@ -7,7 +7,6 @@ import Dashboard from './pages/Dashboard';
 import PrivateRoute from './PrivateRoute';
 import { AuthProvider } from './Auth';
 
-
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const App = () => {
