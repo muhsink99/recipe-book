@@ -16,12 +16,13 @@ const Home = ({ history }) => {
                 <meta name="description" content="Dashboard page where users can view their saved recipes. " />
             </Helmet>
             <div className="Dashboard">
-                <h1>Hi.</h1>
-                <h2>{auth.currentUser.email}  </h2>
+                <h1>Recipes</h1>
                 <FormButton onClick={() => {
                     auth.signOut();
                     history.push('/');
                 }}>Sign out</FormButton>
+                <FormButton>Add Recipe</FormButton>
+                <p>{auth.currentUser.email}  </p>
 
             </div>
         </>

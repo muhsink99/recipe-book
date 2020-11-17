@@ -5,12 +5,12 @@ const FormButton = styled.button`
   padding: 0.1rem 0;
   margin: 0.5em 1rem;
   width: 20rem;
-  height: 3rem;
-  background: #467599;
+  height: 2.5rem;
+  background: black;
   color: white;
-  font-size: 0.65em;
+  font-size: 0.5em;
   border-style: none;
-  box-shadow: 1px 2px #253F52;
+  border-radius: 5px;
 `
 
 const FormInput = styled.input`
@@ -20,8 +20,10 @@ const FormInput = styled.input`
   margin: 0.5em 1rem;
   width: 20rem;
   background: white;
-  font-size: 0.65em;
+  font-size: 0.5em;
   color: black;
+  border-radius: 5px;
+
 `
 
 export { FormButton, FormInput }

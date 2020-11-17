@@ -2,15 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { AuthProvider } from './Auth';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
 
 ReactDOM.render(
-  <AuthProvider>
-    <App />
-  </AuthProvider>,
+    <App />,
   document.getElementById('root')
 );
 

@@ -1,7 +1,9 @@
 @import '~bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
 
-$bg-colour: #1d3354;
-$text-colour: #E9FFF9;
+$bg-colour: darken(white, 2%);
+$text-colour: black;
+$font-family: 'Poppins', sans-serif;
 
 .Container {
   text-align: center;
@@ -17,6 +19,11 @@ $text-colour: #E9FFF9;
 
 p { 
     font-size: 15px;
+}
+
+h1 { 
+    font-family: 'Poppins';
+
 }
 
 .Form { 
