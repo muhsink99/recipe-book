@@ -1,13 +1,26 @@
 import './styles/Dashboard.scss';
 import Helmet from 'react-helmet';
 import { FormButton } from '../components/FormComponents';
-import { auth } from '../firebase';
-import { Redirect, withRouter } from 'react-router-dom';
-import { AuthContext } from '../Auth';
-import { useContext } from 'react';
+import { auth, db } from '../firebase';
+import { withRouter } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { RecipeCard } from '../components/RecipeCard';
+import { Row, Col } from 'react-bootstrap';
+import { React } from 'react';
 
 const Home = ({ history }) => {
-    const { currentUser } = useContext(AuthContext);
+    // Load in all the recipes for the currently logged in user 
+    useEffect(async () => {
+        await db.collection('users').doc(auth.currentUser.uid).collection('recipes').get().then(querySnapshot => {
+            const tempDoc = querySnapshot.docs.map((doc) => {
+                return { id: doc.id, ...doc.data() }
+            })
+            setRecipes(tempDoc);
+        })
+    }, []);
+
+    const [recipes, setRecipes] = useState([{}]);
+    console.log(recipes);
 
     return (
         <>
@@ -17,13 +30,35 @@ const Home = ({ history }) => {
             </Helmet>
             <div className="Dashboard">
                 <h1>Recipes</h1>
+                <p>Currently logged in as {auth.currentUser.uid}  </p>
+
+                <div>
+                    {
+                        recipes.map(function (item, index) {
+                            return <p>{item.name}</p>
+                        })
+                    }
+                </div>
+
                 <FormButton onClick={() => {
                     auth.signOut();
                     history.push('/');
                 }}>Sign out</FormButton>
                 <FormButton>Add Recipe</FormButton>
-                <p>{auth.currentUser.email}  </p>
-
+                <Row>
+                    <Col xl={4} xs={12}>
+                        <RecipeCard></RecipeCard>
+                    </Col>
+                    <Col xl={4} xs={12}>
+                        <RecipeCard></RecipeCard>
+                    </Col>
+                    <Col xl={4} xs={12}>
+                        <RecipeCard></RecipeCard>
+                    </Col>
+                    <Col xl={4} xs={12}>
+                        <RecipeCard></RecipeCard>
+                    </Col>
+                </Row>
             </div>
         </>
     );
