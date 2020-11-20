@@ -19,7 +19,7 @@ const Home = ({ history }) => {
             setRecipes(tempDoc);
             setLoading(false);
         })
-    }, []);
+    });
 
     const [recipes, setRecipes] = useState([{}]);
     const [loading, setLoading] = useState(true);
@@ -37,40 +37,25 @@ const Home = ({ history }) => {
                 </Helmet>
                 <div className="Dashboard">
                     <h1>Recipes</h1>
-                    <p>Currently logged in as {auth.currentUser.uid}  </p>
-
-                    <div>
-                        {
-                            recipes.map(function (item, index) {
-                                return (
-                                    <>
-                                        <p>{item.name}</p>
-                                        <p>{item.description}</p>
-                                        --------------------------
-                                    </>
-                                );
-                            })
-                        }
-                    </div>
+                    <p>Currently logged in as {auth.currentUser.email}  </p>
 
                     <FormButton onClick={() => {
                         auth.signOut();
                         history.push('/');
                     }}>Sign out</FormButton>
                     <FormButton>Add Recipe</FormButton>
+
                     <Row>
-                        <Col xl={4} xs={12}>
-                            <RecipeCard></RecipeCard>
-                        </Col>
-                        <Col xl={4} xs={12}>
-                            <RecipeCard></RecipeCard>
-                        </Col>
-                        <Col xl={4} xs={12}>
-                            <RecipeCard></RecipeCard>
-                        </Col>
-                        <Col xl={4} xs={12}>
-                            <RecipeCard></RecipeCard>
-                        </Col>
+                        {
+                            recipes.map(function (recipe, index) {
+                                console.log(recipe);
+                                return (
+                                    <Col xl={4} xs={12}>
+                                        <RecipeCard recipe={recipe}></RecipeCard>
+                                    </Col>
+                                );
+                            })
+                        }
                     </Row>
                 </div>
             </>

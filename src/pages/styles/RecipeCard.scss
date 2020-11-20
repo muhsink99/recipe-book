@@ -1,10 +1,18 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
+
+$font-family: 'Poppins', sans-serif;
+
 .CardContainer { 
     border: 1px solid black; 
     border-radius: 2.5px; 
     padding: 10px;
     max-width: 600px;
     margin: 10px;
+
+    h4 { 
+        font-family: 'Poppins';
+    }
 
     .BottomText { 
         background-color: black;

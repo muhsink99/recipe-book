@@ -1,29 +1,23 @@
 import '../pages/styles/RecipeCard.scss';
 import { FormInput, FormButton } from './FormComponents';
 
-const RecipeCard = ({ data }) => {
+const RecipeCard = ({ recipe }) => {
     return (
         <>
             <div className='CardContainer'>
                 <div>
                     <h4>
-                        Recipe Name
+                        {recipe.name}
                     </h4>
                     <p>
-                        A tradiitonal tomato sauce for pasta dishes
-                        A tradiitonal tomato sauce for pasta dishes
-
-                        A tradiitonal tomato sauce for pasta dishes
-                        A tradiitonal tomato sauce for pasta dishes
-                        A tradiitonal tomato sauce for pasta dishes
-
-                   </p>
+                        {recipe.description}
+                    </p>
                 </div>
                 <div>
-                    <FormButton>Go to recipe</FormButton>
+                    <FormButton href={recipe.link}>Go to recipe</FormButton>
                 </div>
-                <label className='BottomText'>10m</label>
-                <label className='BottomText'>Serves 4</label>
+                <label className='BottomText'>{recipe.prepTime}m</label>
+                <label className='BottomText'>Serves {recipe.servings}</label>
             </div>
         </>
     );
