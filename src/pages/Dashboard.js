@@ -1,6 +1,6 @@
 import './styles/Dashboard.scss';
 import Helmet from 'react-helmet';
-import { FormButton } from '../components/FormComponents';
+import { Emoji } from '../components/Emoji';
 import { auth, db } from '../firebase';
 import { withRouter } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -9,6 +9,8 @@ import { AddRecipeModal } from '../components/AddRecipeModal';
 import { Row, Col } from 'react-bootstrap';
 import { React } from 'react';
 import LoadingScreen from '../components/LoadingScreen';
+import { IconButton } from '../components/IconButton';
+
 
 const Home = ({ history }) => {
     // Load in all the recipes for the currently logged in user 
@@ -34,6 +36,11 @@ const Home = ({ history }) => {
         setAddRecipeModal(true);
     }
 
+    const signOut = () => {
+        auth.signOut();
+        history.push('/');
+    }
+
     if (loading) {
         return (
             <LoadingScreen />
@@ -47,15 +54,11 @@ const Home = ({ history }) => {
                 </Helmet>
                 <div className="Dashboard">
                     <AddRecipeModal showing={addRecipeModal} close={closeAddRecipeModal} />
-                    <h1>Recipes</h1>
+                    <h1><Emoji symbol="📖" />  Recipes</h1>
                     <p>Currently logged in as {auth.currentUser.email}  </p>
-
-                    <FormButton onClick={() => {
-                        auth.signOut();
-                        history.push('/');
-                    }}>Sign out</FormButton>
-                    <FormButton onClick={openAddRecipeModal}>Add Recipe</FormButton>
-
+                    <IconButton action={openAddRecipeModal} icon={['fa', 'plus']} />
+                    <IconButton action={signOut} icon={['fa', 'sign-out-alt']} />
+                    {/* Iterate thorugh each recipe and render them as RecipeCard components. */}
                     <Row>
                         {
                             recipes.map(function (recipe, index) {
