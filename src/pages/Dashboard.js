@@ -5,6 +5,7 @@ import { auth, db } from '../firebase';
 import { withRouter } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { RecipeCard } from '../components/RecipeCard';
+import { AddRecipeModal } from '../components/AddRecipeModal';
 import { Row, Col } from 'react-bootstrap';
 import { React } from 'react';
 import LoadingScreen from '../components/LoadingScreen';
@@ -23,6 +24,15 @@ const Home = ({ history }) => {
 
     const [recipes, setRecipes] = useState([{}]);
     const [loading, setLoading] = useState(true);
+    const [addRecipeModal, setAddRecipeModal] = useState(false);
+
+    const closeAddRecipeModal = () => {
+        setAddRecipeModal(false);
+    }
+
+    const openAddRecipeModal = () => {
+        setAddRecipeModal(true);
+    }
 
     if (loading) {
         return (
@@ -36,6 +46,7 @@ const Home = ({ history }) => {
                     <meta name="description" content="Dashboard page where users can view their saved recipes. " />
                 </Helmet>
                 <div className="Dashboard">
+                    <AddRecipeModal showing={addRecipeModal} close={closeAddRecipeModal} />
                     <h1>Recipes</h1>
                     <p>Currently logged in as {auth.currentUser.email}  </p>
 
@@ -43,7 +54,7 @@ const Home = ({ history }) => {
                         auth.signOut();
                         history.push('/');
                     }}>Sign out</FormButton>
-                    <FormButton>Add Recipe</FormButton>
+                    <FormButton onClick={openAddRecipeModal}>Add Recipe</FormButton>
 
                     <Row>
                         {
