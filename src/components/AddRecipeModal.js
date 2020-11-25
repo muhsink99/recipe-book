@@ -18,7 +18,7 @@ const AddRecipeModal = ({ showing, close }) => {
         return (
             <>
                 <Modal show={showing} centered>
-                    <Modal.Header closeButton>
+                    <Modal.Header>
                         <Modal.Title>Add Recipe</Modal.Title>
                     </Modal.Header>
 
@@ -42,8 +42,9 @@ const AddRecipeModal = ({ showing, close }) => {
                             </div>
 
                             <Modal.Footer>
-                                <Button variant="secondary" onClick={e => close(e)}>Close</Button>
-                                <Button type="submit" variant="primary">Add Recipe</Button>
+                                <FormButton type="submit" variant="primary">Add Recipe</FormButton>
+
+                                <FormButton variant="secondary" onClick={e => close(e)}>Close</FormButton>
                             </Modal.Footer>
                         </form>
                     </Modal.Body>

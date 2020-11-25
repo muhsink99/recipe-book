@@ -9,12 +9,12 @@ import PrivateRoute from './PrivateRoute';
 import { AuthProvider } from './Auth';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faPlus, faSignOutAlt, faUtensils, faClock, faLink } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faSignOutAlt, faUtensils, faClock, faLink, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-library.add(fab, faSignOutAlt, faPlus, faUtensils, faClock, faLink);
+library.add(fab, faSignOutAlt, faPlus, faUtensils, faClock, faLink, faTrash);
 
 const App = () => {
   return (
