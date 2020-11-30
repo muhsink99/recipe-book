@@ -28,6 +28,7 @@ const Home = ({ history }) => {
     const [recipes, setRecipes] = useState([{}]);
     const [loading, setLoading] = useState(true);
     const [addRecipeModal, setAddRecipeModal] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
 
     const closeAddRecipeModal = () => {
         setAddRecipeModal(false);
@@ -59,10 +60,10 @@ const Home = ({ history }) => {
                         <h1><Emoji symbol="📖" />  Recipes</h1>
                         <p>Currently logged in as {auth.currentUser.email}  </p>
                         <div>
-                            <IconButton action={openAddRecipeModal} icon={['fa', 'plus']} />
+                            <IconButton action={openAddRecipeModal} icon={['fa', 'plus']} text={"Add recipe"} />
                             <IconButton action={signOut} icon={['fa', 'sign-out-alt']} />
                         </div>
-                        <FormInput />
+                        <FormInput onChange={e => setSearchQuery(e.target.value)} />
                     </div>
 
                     {/* Iterate thorugh each recipe and render them as RecipeCard components. */}

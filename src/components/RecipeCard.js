@@ -37,7 +37,7 @@ const RecipeCard = ({ recipe }) => {
             <div className='CardContainer'>
                 <Row>
                     {/* General recipe information */}
-                    <Col sm={9}>
+                    <Col sm={8}>
                         <div>
                             <h4>
                                 {recipe.name}
@@ -54,7 +54,7 @@ const RecipeCard = ({ recipe }) => {
                         </div>
                     </Col>
                     {/* Action panel (open recipe, delete recipe, etc..) */}
-                    <Col sm={3}>
+                    <Col sm={4}>
                         <Link to={`//${recipe.link}`} target="_blank" >
                             <IconButton action={() => { }} icon={['fa', 'link']} />
                         </Link>

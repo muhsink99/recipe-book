@@ -7,16 +7,32 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../pages/styles/IconButton.scss';
+import styled from 'styled-components'
+import { faBlackTie } from '@fortawesome/free-brands-svg-icons';
 
-const IconButton = ({ icon, action, text }) => {
+
+const Background = styled.div`
+    background-color: black;
+    color: white; 
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px;
+    width: 75px;
+    height: 28px;
+    justify-content: center;
+    display: flex;
+    :hover { 
+        cursor: pointer;
+    }
+`;
+
+const IconButton = ({ icon, action, colour }) => {
     return (
-        <>
-            <FontAwesomeIcon icon={icon}
+        <Background>
+            <FontAwesomeIcon icon={icon} size="xs"
                 onClick={e => action(e)}
-                className="IconButton"
             />
-            {text}
-        </>
+        </Background>
     );
 }
 
