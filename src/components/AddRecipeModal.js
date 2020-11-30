@@ -42,9 +42,8 @@ const AddRecipeModal = ({ showing, close }) => {
                             </div>
 
                             <Modal.Footer>
-                                <FormButton type="submit" variant="primary">Add Recipe</FormButton>
-
-                                <FormButton variant="secondary" onClick={e => close(e)}>Close</FormButton>
+                                <FormButton width='6rem' onClick={e => close(e)}>Close</FormButton>
+                                <FormButton width='6rem' type="submit">Add Recipe</FormButton>
                             </Modal.Footer>
                         </form>
                     </Modal.Body>

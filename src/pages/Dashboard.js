@@ -10,6 +10,7 @@ import { Row, Col } from 'react-bootstrap';
 import { React } from 'react';
 import LoadingScreen from '../components/LoadingScreen';
 import { IconButton } from '../components/IconButton';
+import { FormInput } from '../components/FormComponents';
 
 
 const Home = ({ history }) => {
@@ -54,17 +55,23 @@ const Home = ({ history }) => {
                 </Helmet>
                 <div className="Dashboard">
                     <AddRecipeModal showing={addRecipeModal} close={closeAddRecipeModal} />
-                    <h1><Emoji symbol="📖" />  Recipes</h1>
-                    <p>Currently logged in as {auth.currentUser.email}  </p>
-                    <IconButton action={openAddRecipeModal} icon={['fa', 'plus']} />
-                    <IconButton action={signOut} icon={['fa', 'sign-out-alt']} />
+                    <div class="actionPanel">
+                        <h1><Emoji symbol="📖" />  Recipes</h1>
+                        <p>Currently logged in as {auth.currentUser.email}  </p>
+                        <div>
+                            <IconButton action={openAddRecipeModal} icon={['fa', 'plus']} />
+                            <IconButton action={signOut} icon={['fa', 'sign-out-alt']} />
+                        </div>
+                        <FormInput />
+                    </div>
+
                     {/* Iterate thorugh each recipe and render them as RecipeCard components. */}
                     <Row>
                         {
                             recipes.map(function (recipe, index) {
                                 console.log(recipe);
                                 return (
-                                    <Col xl={4} xs={12}>
+                                    <Col xl={4} md={6} xs={12}>
                                         <RecipeCard recipe={recipe}></RecipeCard>
                                     </Col>
                                 );

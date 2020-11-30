@@ -7,11 +7,12 @@ import { Link } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
+
 let recipesRef = 0;
 
 const RecipeCard = ({ recipe }) => {
     const DeleteRecipe = async () => {
-        if (auth.currentUser) {
+        if (auth.currentUser) { // Check if a user is currently logged in. 
             recipesRef = db.collection('users').doc(auth.currentUser.uid).collection('recipes');
         }
         confirmAlert({
