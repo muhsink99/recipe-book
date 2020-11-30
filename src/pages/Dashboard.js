@@ -15,14 +15,18 @@ import { FormInput } from '../components/FormComponents';
 
 const Home = ({ history }) => {
     // Load in all the recipes for the currently logged in user 
+
     useEffect(async () => {
-        await db.collection('users').doc(auth.currentUser.uid).collection('recipes').get().then(querySnapshot => {
-            const tempDoc = querySnapshot.docs.map((doc) => {
-                return { id: doc.id, ...doc.data() }
+        const recipesRef = db.collection('users').doc(auth.currentUser.uid).collection('recipes')
+        console.log(searchQuery);
+        await recipesRef.where('name', '>=', searchQuery).where('name', '<=', searchQuery + '\uf8ff')
+            .get().then(querySnapshot => {
+                const tempDoc = querySnapshot.docs.map((doc) => {
+                    return { id: doc.id, ...doc.data() }
+                })
+                setRecipes(tempDoc);
+                setLoading(false);
             })
-            setRecipes(tempDoc);
-            setLoading(false);
-        })
     });
 
     const [recipes, setRecipes] = useState([{}]);
@@ -59,6 +63,7 @@ const Home = ({ history }) => {
                     <div class="actionPanel">
                         <h1><Emoji symbol="📖" />  Recipes</h1>
                         <p>Currently logged in as {auth.currentUser.email}  </p>
+                        <p>{searchQuery}</p>
                         <div>
                             <IconButton action={openAddRecipeModal} icon={['fa', 'plus']} text={"Add recipe"} />
                             <IconButton action={signOut} icon={['fa', 'sign-out-alt']} />
